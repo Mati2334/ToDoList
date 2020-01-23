@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class ToDoList {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -15,26 +17,33 @@ public class ToDoList {
             String userEnteredItem;
             if (choice == 1) {
                 System.out.println("Keep hitting enter after to do's, if you want to stop, type 'stop'.");
-                for (int i=0;i<MAX;i++) {
+                for (int i = 0; i < MAX; i++) {
                     userEnteredItem = input.nextLine();
-                    if(!userEnteredItem.isEmpty()) {
+                    if (!userEnteredItem.isEmpty()) {
                         list[i] = userEnteredItem;
-                        if (userEnteredItem.equals("stop"))  {
+                        if (userEnteredItem.equals("stop")) {
                             break;
                         }
-                        count++;
+                        //count++;
                     } else {
                         i--; // Do not increase index for empty item.
                     }
                 }
-            }
-            else if (choice == 2) {
-                for (int index = 0;index < count; index++) {
-                    System.out.println(list[index]);
-                }
-            }
-            else {
+            } else if (choice == 2) {
+                int count = list.length;
+                System.out.println("count = " + count);
+                    for (int index = 0; index < count; index++) {
+                        String tableElement = list[index];
+                        if (!(tableElement == null)) {
+                            System.out.println(list[index]);
+                        } else{
+                            System.out.println("The list's item nr " + index + " is empty.");
+                            break;
+                        }
+                    }
+            } else {
                 input.close();
             }
         }
+    }
 }
