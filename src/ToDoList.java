@@ -1,10 +1,14 @@
+import java.nio.charset.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class ToDoList {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         final int MAX = 10;
-        String[] list = new String[MAX];
+        List<String> list = new ArrayList<String>();
         int choice = 0;
 
         while (choice != 3) {
@@ -20,30 +24,28 @@ public class ToDoList {
                 for (int i = 0; i < MAX; i++) {
                     userEnteredItem = input.nextLine();
                     if (!userEnteredItem.isEmpty()) {
-                        list[i] = userEnteredItem;
+                        list.add(userEnteredItem);
                         if (userEnteredItem.equalsIgnoreCase("stop")) {
-                            list[i] = null; // Do not entered "stop" on the list.
+                            //list[i] = null; // Do not entered "stop" on the list.
                             break;
                         }
-
+                        //count++;
                     } else {
                         i--; // Do not increase index for empty item.
                     }
                 }
             } else if (choice == 2) {
-                int count = list.length;
-                //System.out.println("count = " + count);
+                int count = list.size();
+                System.out.println("count = " + count);
+                if (count > 0) {
+//                    listPosition += 1;
+//                    String tableElement = list[index];
                     for (int index = 0; index < count; index++) {
-                        int listPosition = index;
-                        listPosition += 1;
-                        String tableElement = list[index];
-                        if (!(tableElement == null)) {
-                            System.out.println("Item nr " + listPosition + ": " + list[index]);
-                        } else{
-                            System.out.println("The list's item nr " + listPosition + " is empty.");
-                            break;
-                        }
+                        System.out.println("Pozycja listy nr " + index + ": " + list.get(index));
                     }
+                } else {
+                    System.out.println("Brak elementów listy do wydrókowania");
+                }
             } else {
                 input.close();
             }
