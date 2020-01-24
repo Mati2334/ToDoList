@@ -21,23 +21,26 @@ public class ToDoList {
                     userEnteredItem = input.nextLine();
                     if (!userEnteredItem.isEmpty()) {
                         list[i] = userEnteredItem;
-                        if (userEnteredItem.equals("stop")) {
+                        if (userEnteredItem.equalsIgnoreCase("stop")) {
+                            list[i] = null; // Do not entered "stop" on the list.
                             break;
                         }
-                        //count++;
+
                     } else {
                         i--; // Do not increase index for empty item.
                     }
                 }
             } else if (choice == 2) {
                 int count = list.length;
-                System.out.println("count = " + count);
+                //System.out.println("count = " + count);
                     for (int index = 0; index < count; index++) {
+                        int listPosition = index;
+                        listPosition += 1;
                         String tableElement = list[index];
                         if (!(tableElement == null)) {
-                            System.out.println(list[index]);
+                            System.out.println("Item nr " + listPosition + ": " + list[index]);
                         } else{
-                            System.out.println("The list's item nr " + index + " is empty.");
+                            System.out.println("The list's item nr " + listPosition + " is empty.");
                             break;
                         }
                     }
