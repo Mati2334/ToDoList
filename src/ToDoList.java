@@ -1,6 +1,5 @@
-import java.nio.charset.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +16,19 @@ public class ToDoList {
             System.out.println("Type 2 to print the to do list.");
             System.out.println("Type 3 to exit the program.");
             System.out.print("Select an option: ");
-            choice = input.nextInt();
+
+            try {
+                choice = input.nextInt();
+            }catch (InputMismatchException ime){
+                int wrongChoice = choice;
+                System.out.println("Something went wrong. ");
+                System.out.println("Type numbers from 1 to 3.");
+                System.out.println(choice);
+                input.next();
+
+            }
+
+
             String userEnteredItem;
             if (choice == 1) {
                 System.out.println("Keep hitting enter after to do's, if you want to stop, type 'stop'.");
@@ -47,7 +58,8 @@ public class ToDoList {
                     System.out.println("Brak elementów listy do wydrókowania");
                 }
             } else {
-                input.close();
+                System.exit(0);
+                //input.next();
             }
         }
     }
