@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -17,17 +19,7 @@ public class ToDoList {
             System.out.println("Type 3 to exit the program.");
             System.out.print("Select an option: ");
 
-            try {
-                choice = input.nextInt();
-            }catch (InputMismatchException ime){
-                int wrongChoice = choice;
-                System.out.println("Something went wrong. ");
-                System.out.println("Type numbers from 1 to 3.");
-                System.out.println(choice);
-                input.next();
-
-            }
-
+            choice = getChoice(input);
 
             String userEnteredItem;
             if (choice == 1) {
@@ -62,5 +54,22 @@ public class ToDoList {
                 //input.next();
             }
         }
+
+    }
+
+    private static int getChoice(Scanner input) {
+        int numberOfTries = 0;
+        int choice = 0;
+        do {
+            try {
+                numberOfTries++;
+                choice = input.nextInt();
+            } catch (InputMismatchException exeption) {
+                System.out.println("Something went wrong. " + input.next());
+                System.out.println("Type numbers from 1 to 3.");
+                //input.next();
+            }
+        } while (numberOfTries < 6 && choice <= 0);
+        return choice;
     }
 }
