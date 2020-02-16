@@ -32,7 +32,6 @@ public class ToDoList {
                         if (userEnteredItem.equalsIgnoreCase("stop")) {
                             list.remove(i); // To not enter "stop" on the list.
                             break;
-
                         }
                     } else {
                         i--; // Do not increase index for empty item.
@@ -40,12 +39,15 @@ public class ToDoList {
                 }
             } else if (choice == 2) {
                 int count = list.size();
+                int intedxToPrint;
                 System.out.println("count = " + count);
                 if (count > 0) {
 //                    listPosition += 1;
 //                    String tableElement = list[index];
                     for (int index = 0; index < count; index++) {
-                        System.out.println("Pozycja listy nr " + index + ": " + list.get(index));
+                        intedxToPrint = index;
+                        intedxToPrint++;
+                        System.out.println("Pozycja listy nr " + intedxToPrint + ": " + list.get(index));
                     }
                 } else {
                     System.out.println("Brak elementów listy do wydrókowania");
