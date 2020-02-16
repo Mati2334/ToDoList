@@ -23,41 +23,49 @@ public class ToDoList {
 
             String userEnteredItem;
             if (choice == 1) {
-                System.out.println("Keep hitting enter after to do's, if you want to stop, type 'stop'.");
-                for (int i = 0; i < MAX; i++) {
-                    userEnteredItem = input.nextLine();
-
-                    if (!userEnteredItem.isEmpty()) {
-                        list.add(userEnteredItem);
-                        if (userEnteredItem.equalsIgnoreCase("stop")) {
-                            list.remove(i); // To not enter "stop" on the list.
-                            break;
-                        }
-                    } else {
-                        i--; // Do not increase index for empty item.
-                    }
-                }
+                add_item_to_list(input, MAX, list);
             } else if (choice == 2) {
-                int count = list.size();
-                int intedxToPrint;
-                System.out.println("count = " + count);
-                if (count > 0) {
-//                    listPosition += 1;
-//                    String tableElement = list[index];
-                    for (int index = 0; index < count; index++) {
-                        intedxToPrint = index;
-                        intedxToPrint++;
-                        System.out.println("Pozycja listy nr " + intedxToPrint + ": " + list.get(index));
-                    }
-                } else {
-                    System.out.println("Brak elementów listy do wydrókowania");
-                }
+                print_iteams_list(list);
             } else {
                 System.exit(0);
 
             }
         }
 
+    }
+
+    private static void print_iteams_list(List<String> list) {
+        int count = list.size();
+        int intedxToPrint;
+        System.out.println("count = " + count);
+        if (count > 0) {
+
+            for (int index = 0; index < count; index++) {
+                intedxToPrint = index;
+                intedxToPrint++;
+                System.out.println("Pozycja listy nr " + intedxToPrint + ": " + list.get(index));
+            }
+        } else {
+            System.out.println("Brak elementów listy do wydrókowania");
+        }
+    }
+
+    private static void add_item_to_list(Scanner input, int MAX, List<String> list) {
+        String userEnteredItem;
+        System.out.println("Keep hitting enter after to do's, if you want to stop, type 'stop'.");
+        for (int i = 0; i < MAX; i++) {
+            userEnteredItem = input.nextLine();
+
+            if (!userEnteredItem.isEmpty()) {
+                list.add(userEnteredItem);
+                if (userEnteredItem.equalsIgnoreCase("stop")) {
+                    list.remove(i); // To not enter "stop" on the list.
+                    break;
+                }
+            } else {
+                i--; // Do not increase index for empty item.
+            }
+        }
     }
 
     private static int getChoice(Scanner input) {
