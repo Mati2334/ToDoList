@@ -26,13 +26,14 @@ public class ToDoList {
                 System.out.println("Keep hitting enter after to do's, if you want to stop, type 'stop'.");
                 for (int i = 0; i < MAX; i++) {
                     userEnteredItem = input.nextLine();
+
                     if (!userEnteredItem.isEmpty()) {
                         list.add(userEnteredItem);
                         if (userEnteredItem.equalsIgnoreCase("stop")) {
-                            //list[i] = null; // Do not entered "stop" on the list.
+                            list.remove(i); // To not enter "stop" on the list.
                             break;
+
                         }
-                        //count++;
                     } else {
                         i--; // Do not increase index for empty item.
                     }
@@ -51,7 +52,7 @@ public class ToDoList {
                 }
             } else {
                 System.exit(0);
-                //input.next();
+
             }
         }
 
@@ -67,7 +68,7 @@ public class ToDoList {
             } catch (InputMismatchException exeption) {
                 System.out.println("Something went wrong. " + input.next());
                 System.out.println("Type numbers from 1 to 3.");
-                //input.next();
+
             }
         } while (numberOfTries < 6 && choice <= 0);
         return choice;
