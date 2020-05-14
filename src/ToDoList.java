@@ -1,14 +1,14 @@
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class ToDoList {
+
+    final static int MAX = 10;
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        final int MAX = 10;
         List<String> list = new ArrayList<String>();
         int choice = 0;
 
@@ -21,11 +21,10 @@ public class ToDoList {
 
             choice = getChoice(input);
 
-            String userEnteredItem;
             if (choice == 1) {
-                add_item_to_list(input, MAX, list);
+                add_item_to_list(input, list);
             } else if (choice == 2) {
-                print_iteams_list(list);
+                print_items_list(list);
             } else {
                 System.exit(0);
 
@@ -34,7 +33,7 @@ public class ToDoList {
 
     }
 
-    private static void print_iteams_list(List<String> list) {
+    private static void print_items_list(List<String> list) {
         int count = list.size();
         int intedxToPrint;
         System.out.println("count = " + count);
@@ -50,7 +49,7 @@ public class ToDoList {
         }
     }
 
-    private static void add_item_to_list(Scanner input, int MAX, List<String> list) {
+    private static void add_item_to_list(Scanner input, List<String> list) {
         String userEnteredItem;
         System.out.println("Keep hitting enter after to do's, if you want to stop, type 'stop'.");
         for (int i = 0; i < MAX; i++) {
